@@ -13,8 +13,8 @@ export default function Form() {
         return (
             filmName &&
             filmRating !== "?" &&
-            filmGenre /* &&
-            filmWatchAgain */
+            filmGenre &&
+            filmWatchAgain !== null 
         );
     };
 
@@ -22,16 +22,16 @@ export default function Form() {
         setFilmName("");
         setFilmRating("?");
         setFilmGenre("");
-        setFilmWatchAgain("");
+        setFilmWatchAgain(null);
     };
 
     const addMovie = (e) => {
         e.preventDefault()
 
         const newMovie = {
-            id: filmList.length + 1, 
+            id: Date.now(), 
             title: filmName, 
-            rating: filmRating, 
+            rating: Number(filmRating), 
             genre: filmGenre, 
             watchAgain: filmWatchAgain
         };
@@ -71,10 +71,10 @@ export default function Form() {
                     <fieldset>
                         <legend>Watch again?</legend>
                         <label>
-                            <input type="radio" name="watchAgain" value="yes" onChange={() => setFilmWatchAgain(true)} /* onSelect={() => setFilmWatchAgain(true)} */  /> Yes
+                            <input type="radio" name="watchAgain" value="yes" onChange={() => setFilmWatchAgain(true)} checked={filmWatchAgain === true}  /> Yes
                         </label>
                         <label>
-                            <input type="radio" name="watchAgain" value="no" onChange={() => setFilmWatchAgain(false)} /* onSelect={() => setFilmWatchAgain(false)} */ /> No 
+                            <input type="radio" name="watchAgain" value="no" onChange={() => setFilmWatchAgain(false)} checked={filmWatchAgain === false} /> No 
                         </label>
                     </fieldset>
                 </div>
